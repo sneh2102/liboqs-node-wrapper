@@ -1,18 +1,40 @@
 {
   "name": "liboqs-node",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Node.js bindings for liboqs.",
-  "author": "Sneh",
+  "author": "Vietbao Tran <tapucosmo@gmail.com> (TapuCosmo)",
   "license": "MIT",
+  "main": "lib/index.js",
   "scripts": {
     "prep": "rm -rf deps && mkdir deps && cd deps && git clone https://github.com/open-quantum-safe/liboqs.git && git clone https://github.com/open-quantum-safe/liboqs-cpp.git && cd liboqs && git checkout f4b96220 && cd ../liboqs-cpp && git checkout 7e293be && cd ./include && echo '#ifndef LIBOQS_CPP_VERSION' > temp_common.hpp && echo '#define LIBOQS_CPP_VERSION \"0.12.0\"' >> temp_common.hpp && echo '#endif' >> temp_common.hpp && cat common.hpp >> temp_common.hpp && mv temp_common.hpp common.hpp",
     "build": "node-gyp rebuild",
     "build:all": "npm run liboqs:build && node-gyp rebuild",
     "build:package": "npm run build:all && node-pre-gyp package",
+    "docs:build": "jsdoc -c ./docs/jsdoc.json",
+    "ensure_submodules": "node ./scripts/ensure_submodules.js",
     "install": "node-pre-gyp install --fallback-to-build",
     "liboqs:build": "cd deps/liboqs && rm -rf ./build && mkdir build && cd build && cmake -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release -DOQS_BUILD_ONLY_LIB=ON -DOQS_USE_OPENSSL=ON -DOQS_DIST_BUILD=ON -GNinja .. && ninja",
     "liboqs:build_if_not_exists": "node -e \"require('fs').existsSync('./deps/liboqs/build/include/oqs/oqs.h') || require('child_process').execSync('npm run liboqs:build', {stdio: 'inherit'})\"",
-    "prebuild": "npm run liboqs:build_if_not_exists"
+    "prebuild": "npm run ensure_submodules && npm run liboqs:build_if_not_exists",
+    "publish:prepare": "node-pre-gyp configure && node-pre-gyp rebuild && node-pre-gyp package",
+    "publish:draft": "NODE_PRE_GYP_GITHUB_TOKEN=$(cat publish-token) node-pre-gyp-github publish",
+    "tag_upload_binary_release": "node ./scripts/tag_upload_binary_release.js",
+    "test": "mocha --bail false"
+  },
+  "binary": {
+    "module_name": "oqs_node",
+    "module_path": "./build/Release",
+    "host": "https://github.com/TapuCosmo/liboqs-node/releases/download/",
+    "remote_path": "v{version}",
+    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz"
+  },
+  "homepage": "https://github.com/TapuCosmo/liboqs-node#readme",
+  "bugs": {
+    "url": "https://github.com/TapuCosmo/liboqs-node/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TapuCosmo/liboqs-node.git"
   },
   "keywords": [
     "liboqs",
@@ -31,12 +53,10 @@
     "node-pre-gyp": "^0.17.0"
   },
   "devDependencies": {
-    "@electron/rebuild": "^3.7.1",
     "@octokit/core": "^3.5.1",
     "chai": "^4.3.4",
     "chai-bytes": "^0.1.2",
     "docdash": "^1.2.0",
-    "electron": "^34.0.1",
     "jsdoc": "^3.6.7",
     "mocha": "^8.4.0"
   },
