@@ -53,10 +53,12 @@
     "node-pre-gyp": "^0.17.0"
   },
   "devDependencies": {
+    "@electron/rebuild": "^3.7.1",
     "@octokit/core": "^3.5.1",
     "chai": "^4.3.4",
     "chai-bytes": "^0.1.2",
     "docdash": "^1.2.0",
+    "electron": "^34.0.1",
     "jsdoc": "^3.6.7",
     "mocha": "^8.4.0"
   },
