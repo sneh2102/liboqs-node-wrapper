@@ -5,7 +5,7 @@
   "author": "Sneh",
   "license": "MIT",
   "scripts": {
-    "prep": "cd deps && rm -rf liboqs && rm -rf liboqs-cpp && git clone https://github.com/open-quantum-safe/liboqs.git && git clone https://github.com/open-quantum-safe/liboqs-cpp.git && cd liboqs && git checkout f4b96220 && cd ../liboqs-cpp && git checkout 7e293be && cd ./include && echo '#ifndef LIBOQS_CPP_VERSION' > temp_common.hpp && echo '#define LIBOQS_CPP_VERSION \"0.12.0\"' >> temp_common.hpp && echo '#endif' >> temp_common.hpp && cat common.hpp >> temp_common.hpp && mv temp_common.hpp common.hpp",
+    "prep": "rm -rf deps && mkdir deps && cd deps && git clone https://github.com/open-quantum-safe/liboqs.git && git clone https://github.com/open-quantum-safe/liboqs-cpp.git && cd liboqs && git checkout f4b96220 && cd ../liboqs-cpp && git checkout 7e293be && cd ./include && echo '#ifndef LIBOQS_CPP_VERSION' > temp_common.hpp && echo '#define LIBOQS_CPP_VERSION \"0.12.0\"' >> temp_common.hpp && echo '#endif' >> temp_common.hpp && cat common.hpp >> temp_common.hpp && mv temp_common.hpp common.hpp",
     "build": "node-gyp rebuild",
     "build:all": "npm run liboqs:build && node-gyp rebuild",
     "build:package": "npm run build:all && node-pre-gyp package",

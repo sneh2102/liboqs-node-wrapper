@@ -28,6 +28,7 @@ git clone https://github.com/sneh2102/liboqs-node-wrapper.git
 
 3. Run the commands
 ```bash
+cd liboqs-node-wrapper
 npm i
 npm run prep
 npm run build:all
