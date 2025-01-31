@@ -21,6 +21,8 @@ DEFS_Debug := \
 	'-DUSING_UV_SHARED=1' \
 	'-DUSING_V8_SHARED=1' \
 	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-DV8_DEPRECATION_WARNINGS' \
+	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_GLIBCXX_USE_CXX11_ABI=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
@@ -32,7 +34,8 @@ DEFS_Debug := \
 	'-DNODE_API_NO_EXTERNAL_BUFFERS_ALLOWED' \
 	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
-	'-D_DEBUG'
+	'-D_DEBUG' \
+	'-DV8_ENABLE_CHECKS'
 
 # Flags passed to all source files.
 CFLAGS_Debug := \
@@ -54,19 +57,18 @@ CFLAGS_C_Debug :=
 CFLAGS_CC_Debug := \
 	-fno-rtti \
 	-fno-exceptions \
-	-fno-strict-aliasing \
 	-std=gnu++17 \
 	-fexceptions \
 	-std=c++2a
 
 INCS_Debug := \
-	-I/home/sneh/.cache/node-gyp/22.13.0/include/node \
-	-I/home/sneh/.cache/node-gyp/22.13.0/src \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/openssl/config \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/openssl/openssl/include \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/uv/include \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/zlib \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/v8/include \
+	-I/home/sneh/.cache/node-gyp/18.20.5/include/node \
+	-I/home/sneh/.cache/node-gyp/18.20.5/src \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/openssl/config \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/openssl/openssl/include \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/uv/include \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/zlib \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/v8/include \
 	-I/home/sneh/Desktop/TeleAI/liboqs/liboqs-node/node_modules/node-addon-api \
 	-I$(srcdir)/deps/liboqs/build/include \
 	-I$(srcdir)/deps/liboqs-cpp/include
@@ -76,6 +78,8 @@ DEFS_Release := \
 	'-DUSING_UV_SHARED=1' \
 	'-DUSING_V8_SHARED=1' \
 	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-DV8_DEPRECATION_WARNINGS' \
+	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_GLIBCXX_USE_CXX11_ABI=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
@@ -107,19 +111,18 @@ CFLAGS_C_Release :=
 CFLAGS_CC_Release := \
 	-fno-rtti \
 	-fno-exceptions \
-	-fno-strict-aliasing \
 	-std=gnu++17 \
 	-fexceptions \
 	-std=c++2a
 
 INCS_Release := \
-	-I/home/sneh/.cache/node-gyp/22.13.0/include/node \
-	-I/home/sneh/.cache/node-gyp/22.13.0/src \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/openssl/config \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/openssl/openssl/include \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/uv/include \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/zlib \
-	-I/home/sneh/.cache/node-gyp/22.13.0/deps/v8/include \
+	-I/home/sneh/.cache/node-gyp/18.20.5/include/node \
+	-I/home/sneh/.cache/node-gyp/18.20.5/src \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/openssl/config \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/openssl/openssl/include \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/uv/include \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/zlib \
+	-I/home/sneh/.cache/node-gyp/18.20.5/deps/v8/include \
 	-I/home/sneh/Desktop/TeleAI/liboqs/liboqs-node/node_modules/node-addon-api \
 	-I$(srcdir)/deps/liboqs/build/include \
 	-I$(srcdir)/deps/liboqs-cpp/include
